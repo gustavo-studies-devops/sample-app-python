@@ -32,7 +32,8 @@ pipeline {
                         flake8 . --exclude .venv
                     '''
                 }
-            } when {
+            } 
+            when {
                 anyOf {
                     branch pattern:  "feature/*"
                     branch pattern:  "developer/*"
