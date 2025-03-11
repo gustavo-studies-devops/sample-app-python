@@ -1,8 +1,10 @@
 pipeline {
     agent {
         kubernetes {
-            yaml 
-            '''
+            defaultContainer 'shell'
+            
+            yaml """
+            apiVersion: v1
             kind: Pod
             spec:
                 containers:
@@ -15,9 +17,8 @@ pipeline {
                       hostAliases: 
                        - ip: "172.18.0.50"
                          hostnames:
-                          - "gitea.localhost.com
-            '''
-            defaultContainer 'shell'
+                          - "gitea.localhost.com"
+            """
         }
     }
 
