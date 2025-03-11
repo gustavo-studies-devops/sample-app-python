@@ -1,15 +1,13 @@
 pipeline {
     agent {
         kubernetes {
-            defaultContainer 'shell'
-            
             yaml """
             apiVersion: v1
             kind: Pod
             spec:
                 containers:
-                    - name: shell
-                      image: ubuntu
+                    - name: python
+                      image: python:3.9.12-alpine3.15
                       command: 
                        - sleep
                       args:
@@ -23,9 +21,17 @@ pipeline {
     }
 
     stages {
-        stage('Test') {
+        stage('Unit tests') {
             steps {
-                sh 'hostname'
+                container("python") {
+                    sh '''
+                        pip install -r requirements.txt
+                        pytest -v --disable-warnings
+                        bandit -r . -x '/tests/'
+                        black .
+                        flake8 .
+                    '''
+                }
             }
         }
     }
