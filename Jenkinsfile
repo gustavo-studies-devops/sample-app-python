@@ -20,10 +20,10 @@ pipeline {
             } 
             when {
                 anyOf {
-                    branch pattern:  "feature/*"
-                    branch pattern:  "developer/*"
-                    branch pattern:  "hotfix/*"
-                    branch pattern:  "fix/*"
+                    branch pattern:  "feature*"
+                    branch pattern:  "developer*"
+                    branch pattern:  "hotfix*"
+                    branch pattern:  "fix*"
                 }
             }
         }
