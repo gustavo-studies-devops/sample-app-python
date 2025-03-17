@@ -7,7 +7,14 @@ spec:
         - sleep
       args:
         - infinity
-      hostAliases:
-        - ip: "172.18.0.50"
-          hostnames:
-            - "gitea.localhost.com"
+    - name: sonar-scanner-cli
+      image:  sonarsource/sonar-scanner-cli:11.2
+      command:
+        - sleep
+      args:
+        - infinity
+  hostAliases:
+    - ip: "172.18.0.50"
+      hostnames:
+        - "gitea.localhost.com"
+        - "sonarqube.localhost.com"
