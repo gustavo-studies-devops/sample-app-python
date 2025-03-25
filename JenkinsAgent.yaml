@@ -13,8 +13,25 @@ spec:
         - sleep
       args:
         - infinity
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:debug
+      command:
+        - sleep
+      args:
+        - infinity
+      volumeMounts:
+        - name:  harbor-credentials
+          mountPath: /kaniko/.docker
   hostAliases:
     - ip: "172.18.0.50"
       hostnames:
         - "gitea.localhost.com"
         - "sonarqube.localhost.com"
+        - "harbor.localhost.com"
+  volumes:
+    - name: harbor-credentials
+      secret:
+        secretName: harbor-credentials
+        items:
+          - key: .dockerconfigjson
+            path: config.json
