@@ -13,6 +13,7 @@ spec:
         - sleep
       args:
         - infinity
+
     - name: kaniko
       image: gcr.io/kaniko-project/executor:debug
       command:
@@ -22,6 +23,14 @@ spec:
       volumeMounts:
         - name:  harbor-credentials
           mountPath: /kaniko/.docker
+
+    - name: alpine
+      image: alpine
+      command:
+        - sleep
+      args:
+        - infinity
+
   hostAliases:
     - ip: "172.18.0.50"
       hostnames:
