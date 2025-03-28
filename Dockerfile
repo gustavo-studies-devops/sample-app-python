@@ -6,8 +6,8 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install -r requirements.txt
-#   apk upgrade
+RUN pip install -r requirements.txt && \
+  apk upgrade
 
 COPY wsgi.py config.py ./
 COPY application/ application/
