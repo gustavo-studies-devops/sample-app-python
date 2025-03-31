@@ -24,8 +24,8 @@ spec:
       volumeMounts:
         - name:  harbor-credentials
           mountPath: /kaniko/.docker
-        - name: jenkins-artifacts
-          mountPath: /artifacts
+        # - name: jenkins-artifacts
+        #   mountPath: /artifacts
 
     - name: alpine
       image: alpine
@@ -33,9 +33,9 @@ spec:
         - sleep
       args:
         - infinity
-      volumeMounts:
-        - name: jenkins-artifacts
-          mountPath: /artifacts
+      # volumeMounts:
+      #   - name: jenkins-artifacts
+      #     mountPath: /artifacts
 
   hostAliases:
     - ip: "172.18.0.50"
@@ -50,6 +50,6 @@ spec:
         items:
           - key: .dockerconfigjson
             path: config.json
-    - name: jenkins-artifacts
-      persistentVolumeClaim:
-        claimName: jenkins-artifacts
+    # - name: jenkins-artifacts
+    #   persistentVolumeClaim:
+    #     claimName: jenkins-artifacts
