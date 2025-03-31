@@ -44,7 +44,6 @@ spec:
       args:
         - infinity
       volumeMounts:
-        volumeMounts:
         - name:  harbor-credentials
           mountPath: /root/.docker/config.json
           subPath: config.json
