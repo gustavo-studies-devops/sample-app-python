@@ -24,7 +24,6 @@ spec:
       volumeMounts:
         - name:  harbor-credentials
           mountPath: /kaniko/.docker
-
         - name: jenkins-artifacts
           mountPath: /artifacts
 
@@ -51,7 +50,6 @@ spec:
         items:
           - key: .dockerconfigjson
             path: config.json
-    
     - name: jenkins-artifacts
       persistentVolumeClaim:
         claimName: jenkins-artifacts
