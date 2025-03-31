@@ -7,12 +7,14 @@ spec:
         - sleep
       args:
         - infinity
+
     - name: sonar-scanner-cli
       image:  sonarsource/sonar-scanner-cli:11.2
       command:
         - sleep
       args:
         - infinity
+
     - name: kaniko
       image: gcr.io/kaniko-project/executor:debug
       command:
@@ -22,6 +24,20 @@ spec:
       volumeMounts:
         - name:  harbor-credentials
           mountPath: /kaniko/.docker
+
+        - name: jenkins-artifacts
+          mountPath: /artifacts
+
+    - name: alpine
+      image: alpine
+      command:
+        - sleep
+      args:
+        - infinity
+      volumeMounts:
+        - name: jenkins-artifacts
+          mountPath: /artifacts
+
   hostAliases:
     - ip: "172.18.0.50"
       hostnames:
@@ -35,3 +51,7 @@ spec:
         items:
           - key: .dockerconfigjson
             path: config.json
+    
+    - name: jenkins-artifacts
+      persistentVolumeClaim:
+        claimName: jenkins-artifacts
