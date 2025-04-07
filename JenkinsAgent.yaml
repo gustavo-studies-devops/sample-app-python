@@ -49,7 +49,13 @@ spec:
           subPath: config.json
         - name: artifacts
           mountPath: /artifacts
-
+  
+    - name: infra-test
+      image: alpine/helm:3.17.0
+      command:
+        - sleep
+      args:
+        - infinity
 
   hostAliases:
     - ip: "172.18.0.50"
