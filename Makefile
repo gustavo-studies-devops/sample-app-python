@@ -36,3 +36,5 @@ deploy-dev:
 	@kubectl rollout restart deploy restapi-flask
 
 dev: setup-dev deploy-dev
+
+
