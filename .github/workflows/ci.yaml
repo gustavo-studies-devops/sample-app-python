@@ -1,6 +1,7 @@
 name: Python workflow continuos integration
 
 on:
+  workflow_dispatch:
   push:
     branches: [feature/*] # Only for tests
   pull_request:
