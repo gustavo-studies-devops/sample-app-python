@@ -1,0 +1,14 @@
+name: Python workflow continuos integration
+
+on:
+  push:
+    branches: [feature/*] # Only for tests
+  pull_request:
+    branches:
+      - main
+      - develop
+      - release/*
+
+jobs:
+  ci_workflow:
+    uses: gustavo-studies-devops/github-pipeline/.github/workflows/python-workflow-ci.yaml@develop
