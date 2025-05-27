@@ -13,6 +13,8 @@ on:
 jobs:
   ci_workflow:
     permissions:
-        security-events: write
+      security-events: write
     uses: gustavo-studies-devops/github-pipeline/.github/workflows/python-workflow-ci.yaml@develop
+    with:
+      environment: ${{ vars.ENVIRONMENT }}
     secrets: inherit
